@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router,Routes, Route} from 'react-router-dom'
+import Navbar from './Navbar'; 
+import HeroList from './HeroList';
+import Dashboard from './Dashboard';
+import NotFound from './notFound';
+import HeroDetails from './HeroDetails';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <Routes>
+          <Route path="/" element={<Dashboard />} />
+            <Route path="/heroes" element={<HeroList />} />
+            <Route path="/heroes/:id" element={<HeroDetails />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+} 
 
 export default App;
